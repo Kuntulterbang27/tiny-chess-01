@@ -1,12 +1,16 @@
-# tiny-chess-01 starter
+# tiny-chess-01 V1
 
 [![make.fun · tiny-chess-01](https://make.fun/badge/tiny-chess-01.svg)](https://make.fun/bounty/tiny-chess-01?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
 [![rank](https://make.fun/badge/tiny-chess-01/Kuntulterbang27/tiny-chess-01/rank.svg)](https://make.fun/bounty/tiny-chess-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
 [![reward](https://make.fun/badge/tiny-chess-01/Kuntulterbang27/tiny-chess-01/reward.svg)](https://make.fun/bounty/tiny-chess-01?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
 
-A working entry to fork: `main.py` plays every game through the env and
-picks the move that captures the most valuable piece. It is a template,
-not a contender. Replace its one-line choice with a real search.
+`main.py` is a standalone Python 3.13 engine using deterministic depth-3
+negamax alpha-beta, material and compact piece-square tables, MVV-LVA
+capture ordering, and capture-only quiescence with full check evasions.
+It uses a 0x88 board and validates king safety, castling, en passant and
+all promotions. Root moves must occur in the harness's legal move list.
+The original HTTP JSON protocol is unchanged. No clock, randomness,
+third-party runtime dependency, compression or other repository file is used.
 
 ## The size rule
 
@@ -30,5 +34,7 @@ kit, unpack it, and from inside it run:
     makefun grade-local --kit . --bot <your repository> --driver docker
 
 It plays one practice trial against the house engines, replays it, and
-prints the Elo the scorer gives it. Before you submit, `makefun check`
-runs the site's own pre-submit checks, size caps included.
+prints the Elo the scorer gives it. The bundled process driver rejects
+Python entries, including with NODE_ENV=test and
+MAKEFUN_ALLOW_PROCESS_SANDBOX=1; Docker is required by this kit.
+Before submission, `makefun check` runs the site's pre-submit checks.
